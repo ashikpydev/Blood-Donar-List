@@ -45,10 +45,20 @@ def register(request):
 
 
 def all_member(request):
-    donar = BloodDonar.objects.all()
-    context = {'donar':donar}
-    return render(request, 'all_member.html', context)
+    if request.method == 'POST':
+        search = request.POST.get('search')
+        donar = BloodDonar.objects.all().filter(blood_group = search)
+        context = {'donar':donar}
+        return render(request, 'all_member.html', context)
+
+    else:
+        donar = BloodDonar.objects.all()
+        context = {'donar':donar}
+        return render(request, 'all_member.html', context)
 
 
+def user_logout(request):
+    logout(request)
+    return redirect('/')
 
 

@@ -1,38 +1,42 @@
+{% extends 'base.html' %}
+
 {% load static %}
+{% block content %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href={% static 'css/all-member.css' %}>
-    <title>Document</title>
-</head>
-<body>
+
+    <div class="conteiner">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>BLOOD DONAR LIST</h2>
+                <div class="table-wrapper">
+                    <table class="fl-table">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Blood Group</th>
+                            <th>Phone</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            {% for donar in donar %}
+                            <td>{{ donar.name }}</td>
+                            <td>{{donar.blood_group}}</td>
+                            <td>{{donar.phone}}</td>
+                
+                        </tr>
+                            {% endfor %}
+                        <tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
     
-    <h2>BLOOD DONAR LIST</h2>
-<div class="table-wrapper">
-    <table class="fl-table">
-        <thead>
-        <tr>
-            <th>Name</th>
-            <th>Blood Group</th>
-            <th>Phone</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            {% for donar in donar %}
-            <td>{{ donar.name }}</td>
-            <td>{{donar.blood_group}}</td>
-            <td>{{donar.phone}}</td>
 
-        </tr>
-            {% endfor %}
-        <tbody>
-    </table>
-</div>
+
 </body>
-</html>
+
+
+{% endblock %}
