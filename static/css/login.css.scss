@@ -1,0 +1,52 @@
+$PrimaryColor: #ebf5fc;
+$secondaryColor: #ff4747;
+html,
+body {
+    position: relative;
+    height: 100%;
+}
+
+body {
+    background-color: $PrimaryColor;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    color: #000;
+    margin: 0;
+    padding: 0;
+}
+
+.loginWrapper {
+    background-color: $PrimaryColor;
+    box-shadow: -5px -5px 15px rgba(255, 255, 255, 0.8), 5px 5px 10px rgba(0, 0, 0, 0.1);
+    h4 {
+        color: #ababab;
+    }
+    .inputBox {
+        label {
+            color: #787878;
+        }
+        input {
+            border-radius: 40px;
+            box-shadow: inset -5px -5px 15px rgba(255, 255, 255, 0.8), inset 5px 5px 10px rgba(0, 0, 0, 0.1);
+            border: 0 none;
+            background: $PrimaryColor;
+        }
+        input[type="submit"] {
+            border-radius: 40px;
+            box-shadow: -5px -5px 15px rgba(255, 255, 255, 0.8), 5px 5px 10px rgba(0, 0, 0, 0.1);
+            border: 0 none;
+            background: $PrimaryColor;
+            height: 40px;
+            color: #787878;
+            &:active {
+                box-shadow: inset -5px -5px 15px rgba(255, 255, 255, 0.8), inset 5px 5px 10px rgba(0, 0, 0, 0.1);
+                color: $secondaryColor;
+            }
+        }
+    }
+    p {
+        a {
+            color: $secondaryColor;
+        }
+    }
+}

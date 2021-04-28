@@ -15,20 +15,22 @@
                             <th>Name</th>
                             <th>Blood Group</th>
                             <th>Phone</th>
+                            <th>Address</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr>
                             {% for donar in donar %}
-                            <td>{{ donar.name }}</td>
+                            <td><a href="{% url 'user_profile' donar.id %}">{{ donar.name }}</a></td>
                             <td>{{donar.blood_group}}</td>
                             <td>{{donar.phone}}</td>
+                            <td>{{donar.address}}</td>
                 
                         </tr>
                             {% endfor %}
                         <tbody>
                     </table>
-                <a href="{% url 'user-logout'%}"><button class="btn btn-danger btn-md mt-3">LOGOUT</button></a>
+                
                 </div>
             </div>
         </div>

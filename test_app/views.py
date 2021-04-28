@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .models import *
 from django.shortcuts import redirect, render, HttpResponse
 from django.contrib.auth import login, logout, authenticate
+from .forms import *
 # Create your views here.
 
 def user_login(request):
@@ -29,11 +30,12 @@ def register(request):
         print(password)
         confirm_password = request.POST['re_type']
         if password == confirm_password:
+            image = request.POST['img']
             name = request.POST['name']
             blood_group = request.POST['bgroup']
             phone = request.POST['phone']
             user = User.objects.create_user(username = username, password = password)
-            blood_donar = BloodDonar.objects.create(user = user, name = name, blood_group = blood_group, phone = phone)
+            blood_donar = BloodDonar.objects.create(user = user, name = name, blood_group = blood_group, phone = phone, image = image)
 
             return redirect('/all-member')
 
@@ -60,5 +62,30 @@ def all_member(request):
 def user_logout(request):
     logout(request)
     return redirect('/')
+
+
+def user_profile(request, id):
+    profile = BloodDonar.objects.get(pk = id)
+    context = {'profile':profile}
+    return render(request, 'userprofile.html', context)
+
+def my_profile(request):
+    user = request.user
+    userprofile = BloodDonar.objects.get(user = user)
+    context = {'userprofile':userprofile}
+    return render(request,'my_profile.html', context)
+
+def upload_image(request):
+    user = request.user
+    form = BloodDonarForm(instance = user)
+    if request.method == 'POST':
+        form = BloodDonarForm(request.POST, request.FILES, instance = request.user)
+        if form.is_valid():
+            form.save()
+    context = {'form':form}
+    return render(request, "upload_image.html", context)
+
+
+
 
 
